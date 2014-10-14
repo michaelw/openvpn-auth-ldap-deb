@@ -1,0 +1,78 @@
+openvpn-auth-ldap (2.0.3-6.1) unstable; urgency=low
+
+  * Non-maintainer upload.
+  * Ensure autotools-dev is used as well as autoreconf (Closes: 765243)
+
+ -- Wookey <wookey@debian.org>  Tue, 14 Oct 2014 17:14:09 +0000
+
+openvpn-auth-ldap (2.0.3-6) unstable; urgency=medium
+
+  * Remove deps on gobjc-4.6.
+    Patch by Yavor Doganov. Thanks Yavor!! (Closes: #747989)
+  * Acknowledge Julien Cristau's NMU. Thanks.
+    (Closes: #641811)
+  * Move debian/rules to dh. Bump B-Deps on debhelper's version.
+  * Bumped Standards-Version to 3.9.5
+
+ -- Alberto Gonzalez Iniesta <agi@inittab.org>  Fri, 25 Jul 2014 13:27:37 +0200
+
+openvpn-auth-ldap (2.0.3-5.1) unstable; urgency=high
+
+  * Non-maintainer upload.
+  * Build with gobjc-4.6 (closes: #641811)
+
+ -- Julien Cristau <jcristau@debian.org>  Fri, 19 Apr 2013 19:14:00 +0200
+
+openvpn-auth-ldap (2.0.3-5) unstable; urgency=low
+
+  * Updated patch from Antoine Beaupré to fix FTBFS.
+
+ -- Alberto Gonzalez Iniesta <agi@inittab.org>  Mon, 19 Nov 2012 12:48:08 +0100
+
+openvpn-auth-ldap (2.0.3-4) unstable; urgency=low
+
+  * Add patch from Antoine Beaupré to fix "No remote address
+    supplied" error. (Closes: #692936)
+
+ -- Alberto Gonzalez Iniesta <agi@inittab.org>  Mon, 12 Nov 2012 11:35:43 +0100
+
+openvpn-auth-ldap (2.0.3-3) unstable; urgency=low
+
+  * Acknowledge Matthias Klose's NMU. Thanks!
+    (Closes: #667316)
+  * Bumped Standards-Version to 3.9.3
+
+ -- Alberto Gonzalez Iniesta <agi@inittab.org>  Tue, 05 Jun 2012 13:39:01 +0200
+
+openvpn-auth-ldap (2.0.3-2.1) unstable; urgency=low
+
+  * Non maintainer upload.
+  * Fix build failure with GCC 4.7 (Matej Vela). Closes: #667316.
+
+ -- Matthias Klose <doko@debian.org>  Tue, 29 May 2012 08:06:47 +0000
+
+openvpn-auth-ldap (2.0.3-2) unstable; urgency=low
+
+  * Acknowledge Matthias Klose's NMU for #625146.
+  * patched/STARTTLS_before_auth.patch: Run STARTTLS before authenticatingi
+    to the LDAP server. Thanks Andre Pawlowski for finding this and the fix.
+    (Closes: #610339)
+  * debian/control: added Homepage field, added autotools-dev Build-Dep
+  * Added debian/source/format
+  * Added debian/watch
+
+ -- Alberto Gonzalez Iniesta <agi@inittab.org>  Mon, 20 Feb 2012 19:28:31 +0100
+
+openvpn-auth-ldap (2.0.3-1.1) unstable; urgency=low
+
+  * Non maintainer upload.
+  * Configure with --with-objc-runtime=GNU. Closes: #625146. LP: #771029.
+
+ -- Matthias Klose <doko@debian.org>  Sun, 28 Aug 2011 13:19:32 +0200
+
+openvpn-auth-ldap (2.0.3-1) unstable; urgency=low
+
+  * Initial release (Closes: #471356)
+
+ -- Alberto Gonzalez Iniesta <agi@inittab.org>  Thu, 23 Jul 2009 18:25:27 +0200
+

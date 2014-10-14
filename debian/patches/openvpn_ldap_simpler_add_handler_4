@@ -1,0 +1,52 @@
+Description: move address checks further down to avoid certain failures
+ this tries to avoid certain failures with the LDAP plugin where it
+ doesn't get passed the remoteAddress in certain cases. since we do
+ may not care about this address, we fail only when really necessary.
+
+Author: Antoine Beaupr? <anarcat@debian.org>
+
+Origin: vendor
+Bug: https://code.google.com/p/openvpn-auth-ldap/issues/detail?id=4
+Bug-Debian: http://bugs.debian.org/692936
+Forwarded: yes
+Last-Update: 2012-11-10
+
+Index: openvpn-auth-ldap/src/auth-ldap.m
+===================================================================
+--- openvpn-auth-ldap.orig/src/auth-ldap.m	2014-07-25 12:49:08.371689205 +0200
++++ openvpn-auth-ldap/src/auth-ldap.m	2014-07-25 12:49:08.367689205 +0200
+@@ -533,7 +533,10 @@
+ 	}
+ 
+ 	if (tableName)
+-		if (!pf_client_connect_disconnect(ctx, tableName, remoteAddress, connecting))
++        	if (!remoteAddress) {
++			[TRLog debug: "No remote address supplied to OpenVPN LDAP Plugin (OPENVPN_PLUGIN_CLIENT_CONNECT)."];
++			return OPENVPN_PLUGIN_FUNC_ERROR;
++		} else if (!pf_client_connect_disconnect(ctx, tableName, remoteAddress, connecting))
+ 			return OPENVPN_PLUGIN_FUNC_ERROR;
+ #endif /* HAVE_PF */
+ 
+@@ -587,20 +590,10 @@
+ 			break;
+ 		/* New connection established */
+ 		case OPENVPN_PLUGIN_CLIENT_CONNECT:
+-			if (!remoteAddress) {
+-				[TRLog debug: "No remote address supplied to OpenVPN LDAP Plugin (OPENVPN_PLUGIN_CLIENT_CONNECT)."];
+-				ret = OPENVPN_PLUGIN_FUNC_ERROR;
+-			} else {
+-				ret = handle_client_connect_disconnect(ctx, ldap, ldapUser, remoteAddress, YES);
+-			}
++			ret = handle_client_connect_disconnect(ctx, ldap, ldapUser, remoteAddress, YES);
+ 			break;
+ 		case OPENVPN_PLUGIN_CLIENT_DISCONNECT:
+-			if (!remoteAddress) {
+-				[TRLog debug: "No remote address supplied to OpenVPN LDAP Plugin (OPENVPN_PLUGIN_CLIENT_DISCONNECT)."];
+-				ret = OPENVPN_PLUGIN_FUNC_ERROR;
+-			} else {
+-				ret = handle_client_connect_disconnect(ctx, ldap, ldapUser, remoteAddress, NO);
+-			}
++			ret = handle_client_connect_disconnect(ctx, ldap, ldapUser, remoteAddress, NO);
+ 			break;
+ 		default:
+ 			[TRLog debug: "Unhandled plugin type in OpenVPN LDAP Plugin (type=%d)", type];

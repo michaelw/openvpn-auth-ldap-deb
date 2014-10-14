@@ -1,0 +1,15 @@
+#!/usr/bin/make -f
+
+%:
+	dh $@ --with autoreconf,autotools-dev
+
+override_dh_auto_configure:
+	dh_auto_configure -- $(shell dpkg-buildflags --export=configure) --prefix=/usr --with-openvpn=/usr/include/openvpn --with-objc-runtime=modern
+
+override_dh_auto_clean:
+	rm -f tests/Makefile
+	dh_auto_clean
+
+override_dh_auto_install:
+	$(MAKE) install prefix=$(CURDIR)/debian/openvpn-auth-ldap/usr libdir=\$${prefix}/lib/openvpn
+

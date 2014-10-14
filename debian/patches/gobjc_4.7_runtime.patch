@@ -1,0 +1,29 @@
+Description: Fix build failure with GCC 4.7
+ - aclocal.m4 (OD_OBJC_RUNTIME): Check for modern GNU runtime (GCC 4.6+).
+Bug-Debian: http://bugs.debian.org/667316
+Author: Matej Vela <vela@debian.org>
+Last-Update: 2012-05-20
+
+--- a/aclocal.m4
++++ b/aclocal.m4
+@@ -156,11 +156,20 @@
+ 			AC_LINK_IFELSE([
+ 					AC_LANG_PROGRAM([
+ 							#include <objc/objc.h>
++							#ifdef __GNU_LIBOBJC__
++							#include <objc/runtime.h>
++							#else
+ 							#include <objc/objc-api.h>
++							#endif
+ 						], [
++							#ifdef __GNU_LIBOBJC__
++							Class class = objc_lookUpClass("Object");
++							puts(class_getName(class));
++							#else
+ 							id class = objc_lookup_class("Object");
+ 							id obj = @<:@class alloc@:>@;
+ 							puts(@<:@obj name@:>@);
++							#endif
+ 						])
+ 					], [
+ 						od_cv_objc_runtime_gnu="yes"

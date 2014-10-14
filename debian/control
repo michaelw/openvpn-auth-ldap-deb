@@ -1,0 +1,20 @@
+Source: openvpn-auth-ldap
+Section: net
+Priority: extra
+Maintainer: Alberto Gonzalez Iniesta <agi@inittab.org>
+Build-Depends: debhelper (>= 8.9.7), openvpn (>=2), re2c, libldap2-dev, gobjc, autotools-dev, dh-autoreconf, libgnustep-base-dev
+Standards-Version: 3.9.5
+Homepage: http://code.google.com/p/openvpn-auth-ldap/
+
+Package: openvpn-auth-ldap
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, openvpn (>=2)
+Description: OpenVPN LDAP authentication module
+ A plugin that implements username/password authentication via
+ LDAP for OpenVPN 2.x. It features:
+ .
+  * Simple Apache-style configuration file. 
+  * LDAP group-based access restrictions. 
+  * Will authenticate against any LDAP server that supports LDAP
+    simple binds -- including Active Directory. 
+
