@@ -2,7 +2,7 @@ Source: openvpn-auth-ldap
 Section: net
 Priority: extra
 Maintainer: Alberto Gonzalez Iniesta <agi@inittab.org>
-Build-Depends: debhelper (>= 8.9.7), openvpn (>=2), re2c, libldap2-dev, gobjc, autotools-dev, dh-autoreconf, libgnustep-base-dev
+Build-Depends: debhelper (>= 8.9.7), openvpn (>=2), re2c, libldap2-dev, gobjc-5 | gobjc, autotools-dev, dh-autoreconf, libgnustep-base-dev
 Standards-Version: 3.9.5
 Homepage: http://code.google.com/p/openvpn-auth-ldap/
 

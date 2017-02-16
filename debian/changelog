@@ -1,3 +1,12 @@
+openvpn-auth-ldap (2.0.3-6.1instart1) xenial; urgency=medium
+
+  * Fix https://github.com/threerings/openvpn-auth-ldap/issues/11
+    "OpenVPN crash is LDAP server is unavailble" (sic)
+  * added explicit dependency for gobjc-5 to prevent "cc1obj" failure
+    (note that this kills precise compatibility)
+
+ -- Michael Weber <mweber@instartlogic.com>  Wed, 15 Feb 2017 17:49:10 -0800
+
 openvpn-auth-ldap (2.0.3-6.1) unstable; urgency=low
 
   * Non-maintainer upload.

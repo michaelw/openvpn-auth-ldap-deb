@@ -2,3 +2,4 @@ STARTTLS_before_auth.patch
 gobjc_4.7_runtime.patch
 openvpn_ldap_simpler_add_handler_4
 auth-ldap-gnustep.patch
+fix-openvpn-auth-ldap-crash.patch
